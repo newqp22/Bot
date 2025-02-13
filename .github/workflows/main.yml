@@ -18,12 +18,13 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies (pytz first, then telebot)
+      - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip install pytz
           pip install telebot
 
-      - name: Run bot continuously
+      - name: Keep bot running
         run: |
-          tmux new-session -d -s bot_session "while true; do python3 bot.py; sleep 5; done"
+          nohup python3 bot.py &
+          sleep infinity
